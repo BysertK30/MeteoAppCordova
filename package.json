@@ -1,6 +1,6 @@
 {
-  "name": "io.cordova.hellocordova",
-  "displayName": "HelloCordova",
+  "name": "com.bysertk30.hellometeo",
+  "displayName": "Hello Meteo",
   "version": "1.0.0",
   "description": "A sample Apache Cordova application that responds to the deviceready event.",
   "main": "index.js",
@@ -12,12 +12,12 @@
   ],
   "author": "Apache Cordova Team",
   "license": "Apache-2.0",
-  "devDependencies": {
-    "cordova-android": "^14.0.1"
-  },
   "cordova": {
     "platforms": [
       "android"
     ]
+  },
+  "devDependencies": {
+    "cordova-android": "^14.0.1"
   }
 }

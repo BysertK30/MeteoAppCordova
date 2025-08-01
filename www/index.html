@@ -1,83 +1,40 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 <head>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Météo</title>
-    <style>
-        body {
-            font-family: sans-serif;
-            background-color: #f0f0f0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-        }
-        .container {
-            text-align: center;
-            background-color: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-        }
-        input {
-            width: 80%;
-            padding: 10px;
-            margin-bottom: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-        button {
-            padding: 10px 20px;
-            border: none;
-            background-color: #007bff;
-            color: white;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        .weather-info {
-            margin-top: 20px;
-        }
-    </style>
+    <title>MeteoApp</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <div class="container">
-        <h1>Application Météo</h1>
-        <input type="text" id="cityInput" placeholder="Entrez le nom de la ville">
-        <button onclick="getWeather()">Obtenir la météo</button>
-        <div class="weather-info" id="weatherInfo"></div>
+    <div class="weather-app">
+        <div class="header">
+            <input type="text" id="city-search" placeholder="Rechercher une ville...">
+            <button id="search-button">Rechercher</button>
+            <button id="current-location-button">Ma position</button>
+        </div>
+        <div class="current-weather">
+            <h2 id="location"></h2>
+            <div class="main-info">
+                <img id="weather-icon" src="" alt="Icône météo">
+                <span id="temperature"></span>
+            </div>
+            <p id="description"></p>
+            <div class="details">
+                <p>Humidité: <span id="humidity"></span></p>
+                <p>Vent: <span id="wind-speed"></span></p>
+                <p>Pression: <span id="pressure"></span></p>
+            </div>
+        </div>
+        <div class="forecast">
+            <h3>Prévisions sur 5 jours</h3>
+            <div id="forecast-container" class="forecast-container">
+                <!-- Les prévisions seront insérées ici par JavaScript -->
+            </div>
+        </div>
     </div>
 
-    <script>
-        function getWeather() {
-            const city = document.getElementById('cityInput').value;
-            if (!city) {
-                alert('Veuillez entrer un nom de ville.');
-                return;
-            }
-
-            const apiKey = 'a0d1fbf0eb608101f49d03b743d1ad69';
-            const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric&lang=fr`;
-
-            fetch(apiUrl)
-                .then(response => response.json())
-                .then(data => {
-                    if (data.cod === 200) {
-                        const weatherInfo = `
-                            <h2>${data.name}</h2>
-                            <p>Température: ${data.main.temp}°C</p>
-                            <p>Météo: ${data.weather[0].description}</p>
-                        `;
-                        document.getElementById('weatherInfo').innerHTML = weatherInfo;
-                    } else {
-                        alert(data.message);
-                    }
-                })
-                .catch(error => {
-                    alert('Une erreur est survenue.');
-                    console.error('Error fetching weather data:', error);
-                });
-        }
-    </script>
+    <script src="cordova.js"></script>
+    <script src="js/app.js"></script>
 </body>
 </html>
