@@ -25,6 +25,8 @@ jobs:
         node-version: '18'
     - name: Install dependencies
       run: npm install
+    - name: Add Android Platform
+      run: npx cordova platform add android
     - name: Build Cordova Android App
       run: npx cordova build android
     - name: Upload APK
